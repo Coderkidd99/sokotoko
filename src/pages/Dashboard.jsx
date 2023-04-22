@@ -10,7 +10,7 @@ import { useContext, useState } from "react";
 import CartContext from "./CartContext";
 
 function Dashboard({ loggedIn, handleLogout }) {
-  
+
   const { items } = useContext(CartContext);
 
   const [modal, setModal] = useState(false);
@@ -65,9 +65,10 @@ function Dashboard({ loggedIn, handleLogout }) {
                 <li className="cursor-pointer hover:text-gray-600">
                   <MdFavoriteBorder size={24} />
                 </li>
+                
                 <li className="cursor-pointer hover:text-gray-600">
+                <span className="fixed text-xl top-1  ">{items.length}</span>
                   <BsCart4 size={24} />
-                  <span>{items.length}</span>
                 </li>
                 <li className="cursor-pointer hover:text-gray-600">
                   <Link to="/login">
