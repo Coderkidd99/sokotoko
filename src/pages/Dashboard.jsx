@@ -3,24 +3,21 @@ import { BsCart4 } from "react-icons/bs";
 import { FaUserCircle } from "react-icons/fa";
 import { BiStore } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import Logo from '../images/logo.png'
-import '../App'
+import Logo from "../images/logo.png";
+import "../App";
 import LoginModal from "./LoginModal";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import CartContext from "./CartContext";
 
-
-
-
-
-function Dashboard({loggedIn, handleLogout}) {
-
-    const [modal, setModal] = useState(false);
-
-    function toggleModal() {
-        setModal(!modal);
-    }
+function Dashboard({ loggedIn, handleLogout }) {
   
+  const { items } = useContext(CartContext);
 
+  const [modal, setModal] = useState(false);
+
+  function toggleModal() {
+    setModal(!modal);
+  }
 
   return (
     <header className="flex justify-center bg-white shadow">
@@ -53,6 +50,7 @@ function Dashboard({loggedIn, handleLogout}) {
                 <li>
                   <Link to="/seller">
                     <BiStore size={24} />
+                    <span>{items.length}</span>
                   </Link>
                 </li>
                 <li
@@ -69,11 +67,13 @@ function Dashboard({loggedIn, handleLogout}) {
                 </li>
                 <li className="cursor-pointer hover:text-gray-600">
                   <BsCart4 size={24} />
+                  <span>{items.length}</span>
                 </li>
                 <li className="cursor-pointer hover:text-gray-600">
-                  <Link to="/login"><button onClick={toggleModal}>Sign In</button></Link>
+                  <Link to="/login">
+                    <button onClick={toggleModal}>Sign In</button>
+                  </Link>
                   <LoginModal modal={modal} toggleModal={toggleModal} />
-
                 </li>
               </>
             )}

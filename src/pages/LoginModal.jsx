@@ -4,9 +4,6 @@ function LoginModal({ modal, toggleModal }) {
     // handle form submission here
   };
 
-  const handleClose = () => {
-    toggleModal();
-  };
 
   return (
     <>
