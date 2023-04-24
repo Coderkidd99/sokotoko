@@ -11,9 +11,7 @@ import { useContext, useState } from "react";
 import CartContext from "./CartContext";
 
 function Dashboard({ loggedIn, handleLogout }) {
-
   const { items } = useContext(CartContext);
-
   const [modal, setModal] = useState(false);
 
   function toggleModal() {
@@ -21,26 +19,28 @@ function Dashboard({ loggedIn, handleLogout }) {
   }
 
   return (
-    <header className="flex justify-center bg-white shadow">
-      <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        <div className="flex items-center">
-          <img src={Logo} alt="Sokotoko logo" width={200} />
-          <div className="ml-4 flex">
-            <input
-              type="text"
-              placeholder="Search for products"
-              className="py-2 px-4 border border-gray-400 w-96 rounded-s-md"
-            />
-            <button
-              type="submit"
-              className=" bg-amber-800 hover:bg-amber-700 text-white px-4 w-28 rounded-r-md"
-            >
-              Search
-            </button>
+    <header className="bg-white shadow">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between py-4">
+        <div className="flex items-center flex-wrap">
+          <img src={Logo} alt="Sokotoko logo" className="h-12 md:h-16" />
+          <div className="ml-4 flex justify-end">
+            <form className="flex">
+              <input
+                type="text"
+                placeholder="Search for products"
+                className="py-2 px-4 border border-gray-400 w-full md:w-80 rounded-l-md"
+              />
+              <button
+                type="submit"
+                className="bg-amber-800 hover:bg-amber-700 text-white px-4 md:px-8 w-auto rounded-r-md"
+              >
+                Search
+              </button>
+            </form>
           </div>
         </div>
         <nav className="">
-          <ul className="flex items-center list-none space-x-4 ml-2">
+          <ul className="flex items-center list-none space-x-4">
             {loggedIn ? (
               <>
                 <li>
@@ -51,7 +51,7 @@ function Dashboard({ loggedIn, handleLogout }) {
                 <li>
                   <Link to="/seller">
                     <BiStore size={24} />
-                    <span>{items.length}</span>
+                    <span className="ml-2">{items.length}</span>
                   </Link>
                 </li>
                 <li
@@ -66,15 +66,17 @@ function Dashboard({ loggedIn, handleLogout }) {
                 <li className="cursor-pointer hover:text-gray-600">
                   <MdFavoriteBorder size={24} />
                 </li>
-                
-                <li className="cursor-pointer hover:text-gray-600">
-                <span className="fixed text-xl top-1  ">{items.length}</span>
-                  <BsCart4 size={24} />
+
+                <li className="relative cursor-pointer hover:text-gray-600">
+                  <Link to="/cart">
+                    <BsCart4 size={24} />
+                    <span className="absolute top-0 right-0 -mt-1 -mr-1 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex justify-center items-center">
+                      {items.length}
+                    </span>
+                  </Link>
                 </li>
                 <li className="cursor-pointer hover:text-gray-600">
-                  <Link to="/login">
-                    <button onClick={toggleModal}>Sign In</button>
-                  </Link>
+                  <button onClick={toggleModal}>Sign In</button>
                   <LoginModal modal={modal} toggleModal={toggleModal} />
                 </li>
               </>

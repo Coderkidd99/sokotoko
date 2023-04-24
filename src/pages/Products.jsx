@@ -1,26 +1,40 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import ProductCard from "./ProductCard";
+import ProductContext from "./ProductContext";
 
 const Products = () => {
-  const [itemsData, setItemsData] = useState([]);
+  const { itemsListing, setItemsListing } = useContext(ProductContext);
+
+  const [favorites, setFavorites] = useState([]);
+
+  const toggleFavorite = (productId) => {
+    if (favorites.includes(productId)) {
+      setFavorites(favorites.filter((id) => id !== productId));
+    } else {
+      setFavorites([...favorites, productId]);
+    }
+  };
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products?sort=desc")
-      .then((Response) => Response.json())
-      .then((apiData) => setItemsData(apiData))
+      .then((response) => response.json())
+      .then((apiData) => setItemsListing(apiData))
       .catch((error) => console.log(error));
-  }, []);
+  }, [setItemsListing]);
 
   return (
-    <div className="flex text-lg text-cyan-950 justify-center">
-      <h1>Items from API:</h1>
-      <ul className="list-group">
-        {itemsData.map((item) => (
-          <li key={item.id} className="flex bg-red-300">
-            <img src={item.image} />
-      
-          </li>
+    <div>
+      <h1 className="text-4xl font-bold p-4">All Categories</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {itemsListing.map((item) => (
+          <ProductCard
+            key={item.id}
+            product={item}
+            isFavorite={favorites.includes(item.id)}
+            toggleFavorite={() => toggleFavorite(item.id)}
+          />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
