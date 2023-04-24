@@ -4,7 +4,7 @@ import { FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import CartContext from "./CartContext";
 
-function ProductCard({ product, isFavorite, toggleFavorite }) {
+function ProductCard({ product, isFavorite = false, toggleFavorite = () => {} }) {
   const { items, addItem } = useContext(CartContext);
   const [showHeart, setShowHeart] = useState(false);
 
@@ -14,39 +14,33 @@ function ProductCard({ product, isFavorite, toggleFavorite }) {
     setTimeout(() => setShowHeart(false), 2000);
   };
 
+  const imageStyle = "object-cover w-48 h-48 ";
+  const price = product?.price || "";
+
   return (
-    <div className="border rounded-lg overflow-hidden relative">
+    <div className="overflow-hidden relative">
       {showHeart && (
         <div className="absolute top-0 right-0 m-3 text-red-500">
           <MdFavorite size={24} />
         </div>
       )}
-      <div className="aspect-w-1 aspect-h-1">
-        <img
-          src={product.image}
-          alt={product.title}
-          className="object-cover w-44 p-2 h-full"
-        />
+      <div className="relative flex justify-center aspect-w-1 aspect-h-1 hover:shadow-md z-10 shadow-md-left shadow-md-right
+">
+        <img src={product?.image} alt={product?.title} className={imageStyle} />
       </div>
       <div className="p-4 bg-white">
-        <Link to={`/product/${product.id}`}>
-          <h2 className="font-bold text-xl mb-2">{product.title}</h2>
+        <Link to={`/product/${product?.id}`}>
+          <h2 className="font-bold text-sm mb-2">{product?.title}</h2>
         </Link>
         <div className="flex justify-between items-center">
-          <div className="text-gray-900 font-bold text-lg">
-            ${product.price}
-          </div>
+          <div className="text-gray-900 font-bold text-lg">{`$${price}`}</div>
           <div className="flex items-center">
             <button
               type="button"
               className={`text-gray-500 ${isFavorite ? "text-red-500" : ""}`}
               onClick={toggleFavorite}
             >
-              {isFavorite ? (
-                <MdFavorite size={24} />
-              ) : (
-                <MdFavoriteBorder size={24} />
-              )}
+              {isFavorite ? <MdFavorite size={24} /> : <MdFavoriteBorder size={24} />}
             </button>
             <button
               type="button"
