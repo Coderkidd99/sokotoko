@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { MdFavoriteBorder } from "react-icons/md";
 import { BsCart4 } from "react-icons/bs";
 import { FaUserCircle } from "react-icons/fa";

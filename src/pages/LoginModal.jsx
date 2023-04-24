@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 function LoginModal({ modal, toggleModal }) {
   const handleSubmit = (e) => {
     e.preventDefault();
