@@ -19,27 +19,25 @@ function Dashboard({ loggedIn, handleLogout }) {
   }
 
   return (
-    <header className="bg-white shadow">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between py-4">
-        <div className="flex items-center flex-wrap">
-          <img src={Logo} alt="Sokotoko logo" className="h-12 md:h-16" />
-          <div className="ml-4 flex justify-end">
-            <form className="flex">
-              <input
-                type="text"
-                placeholder="Search for products"
-                className="py-2 px-4 border border-gray-400 w-full md:w-80 rounded-l-md"
-              />
-              <button
-                type="submit"
-                className="bg-amber-800 hover:bg-amber-700 text-white px-4 md:px-8 w-auto rounded-r-md"
-              >
-                Search
-              </button>
-            </form>
-          </div>
+    <header className="flex flex-col sm:flex-row bg-white shadow">
+      <div className="flex justify-between items-center w-full px-4 sm:px-6 lg:px-8 py-4">
+        <div className="flex items-center">
+          <img src={Logo} alt="Sokotoko logo" className="h-12 md:h-16 md:w-auto" />
         </div>
-        <nav className="">
+        <form className="flex flex-1 h-10 ml-4">
+          <input
+            type="text"
+            placeholder="Search for products"
+            className="w-full h-full border border-gray-400 px-4 rounded-l-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+          />
+          <button
+            type="submit"
+            className="bg-amber-800 hover:bg-amber-700 text-white px-4 rounded-r-md"
+          >
+            Search
+          </button>
+        </form>
+        <nav className="flex p-2 justify-evenly items-center">
           <ul className="flex items-center list-none space-x-4">
             {loggedIn ? (
               <>
