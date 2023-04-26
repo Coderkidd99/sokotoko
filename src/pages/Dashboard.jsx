@@ -19,7 +19,7 @@ function Dashboard({ loggedIn, handleLogout }) {
   }
 
   return (
-    <header className="flex flex-col sm:flex-row bg-white shadow">
+    <header className="flex flex-col sm:flex-row bg-white shadow px-28">
       <div className="flex justify-between items-center w-full px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center">
           <img src={Logo} alt="Sokotoko logo" className="h-12 md:h-16 md:w-auto" />
