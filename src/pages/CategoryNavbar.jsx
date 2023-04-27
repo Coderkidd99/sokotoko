@@ -17,7 +17,7 @@ function CategoryNavbar() {
         <ul className="flex">
           <li className="relative mx-4">
             <a
-              href="#"
+              href="/clothing"
               className="hover:text-gray-400"
               onMouseEnter={() => toggleMenu('item1')}
               onMouseLeave={() => toggleMenu('item1')}
@@ -31,7 +31,7 @@ function CategoryNavbar() {
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-gray-400">
+                    <a href="/womensclothing" className="hover:text-gray-400">
                       Women's Clothing
                     </a>
                   </li>
