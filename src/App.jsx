@@ -23,7 +23,7 @@ export default function App() {
         <BrowserRouter>
           <Dashboard loggedIn={loggedIn} handleLogout={handleLogout} />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/user" element={<User />} />
             <Route path="/seller" element={<Seller />} />

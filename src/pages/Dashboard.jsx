@@ -22,11 +22,13 @@ function Dashboard({ loggedIn, handleLogout }) {
     <header className="flex flex-col sm:flex-row bg-white shadow px-28">
       <div className="flex justify-between items-center w-full px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center">
-          <img
-            src={Logo}
-            alt="Sokotoko logo"
-            className="h-12 md:h-16 md:w-auto"
-          />
+          <Link to="/home">
+            <img
+              src={Logo}
+              alt="Sokotoko logo"
+              className="h-12 md:h-16 md:w-auto"
+            />
+          </Link>
         </div>
         <form className="flex flex-1 h-10 ml-4">
           <input
@@ -53,7 +55,7 @@ function Dashboard({ loggedIn, handleLogout }) {
                 <li>
                   <Link to="/seller">
                     <BiStore size={24} />
-                    <span className="ml-2">{items.length}</span>
+                    <span className="ml-2">{cartItems.length}</span>
                   </Link>
                 </li>
                 <li
