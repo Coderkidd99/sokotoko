@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
-import Dashboard from "./Dashboard";
+
 
 function CartItems({ showCart, toggleCart }) {
   return (
     <div>
       {showCart && (
-        <div className="fixed z-10 inset-0 overflow-y-auto">
-          <div className="flex items-center justify-center min-h-screen">
-            <div className="relative bg-white w-11/12 md:w-2/3 lg:w-1/2 xl:w-1/3 rounded-lg shadow-lg">
+        <div className="fixed z-10 inset-0 overflow-y-auto ">
+          <div className="flex items-start justify-end  min-h-screen">
+            <div className="relative bg-white right-0  w-11/12 md:w-2/3 lg:w-1/2 xl:w-1/3 rounded-lg shadow-lg">
               <button
                 className="absolute top-0 right-0 m-3"
                 onClick={toggleCart}
@@ -28,7 +28,7 @@ function CartItems({ showCart, toggleCart }) {
                 </svg>
               </button>
               <div className="p-4">
-                <Dashboard />
+                <h1> *Add cart here* </h1>
               </div>
             </div>
           </div>

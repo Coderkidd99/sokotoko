@@ -76,8 +76,7 @@ function Dashboard({ loggedIn, handleLogout }) {
                   <MdFavoriteBorder size={24} />
                 </li>
 
-                <Link
-                  to="/CartPage"
+                <button
                   className="relative cursor-pointer hover:text-gray-600"
                   onClick={toggleCart}
                 >
@@ -85,12 +84,13 @@ function Dashboard({ loggedIn, handleLogout }) {
                   <span className="absolute top-0 right-0 -mt-1 -mr-1 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex justify-center items-center">
                     {cartItems.length}
                   </span>
-                </Link>
+                </button>
                 {showCart && (
                   <div>
                     <CartItems showCart={showCart} toggleCart={toggleCart} />
                   </div>
                 )}
+
                 <li className="cursor-pointer hover:text-gray-600">
                   <button onClick={toggleModal}>Sign In</button>
                   <LoginModal modal={modal} toggleModal={toggleModal} />

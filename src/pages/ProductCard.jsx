@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import CartContext from "./CartContext";
 
 function ProductCard({ product, isFavorite = false, toggleFavorite = () => {} }) {
-  const { items, addItem } = useContext(CartContext);
+  const { addItem } = useContext(CartContext);
   const [showHeart, setShowHeart] = useState(false);
 
   const handleAddToCart = () => {
