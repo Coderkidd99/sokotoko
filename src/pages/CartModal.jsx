@@ -1,20 +1,7 @@
 import { useState } from 'react';
 
 function CartModal() {
-  const [cartItems, setCartItems] = useState([]);
-  const [cartTotal, setCartTotal] = useState(0);
 
-  // Function to add item to cart
-  const addToCart = (item) => {
-    setCartItems([...cartItems, item]);
-    setCartTotal(cartTotal + item.price);
-  };
-
-  // Function to remove item from cart
-  const removeFromCart = (item) => {
-    setCartItems(cartItems.filter((i) => i.id !== item.id));
-    setCartTotal(cartTotal - item.price);
-  };
 
   return (
     <div className="fixed bottom-0 right-0 bg-white border border-gray-300 p-4">
