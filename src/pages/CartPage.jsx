@@ -1,16 +1,16 @@
 import { useContext } from "react";
-import  CartContext  from "./CartContext";
+import CartContext from "./CartContext";
 
 const CartPage = () => {
-  const { items, cartTotal, removeFromCart } = useContext(CartContext);
+  const { cartItems, cartTotal, removeFromCart } = useContext(CartContext);
 
   return (
     <div>
-      {items.length > 0 ? (
+      {cartItems.length > 0 ? (
         <div>
           <h2 className="text-lg font-bold mb-4">Shopping Cart</h2>
           <div className="border p-4">
-            {items.map((item) => (
+            {cartItems.map((item) => (
               <div
                 key={item.id}
                 className="flex justify-between items-center mb-2"
