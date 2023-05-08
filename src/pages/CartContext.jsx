@@ -11,7 +11,7 @@ export const CartProvider = ({ children }) => {
   // Function to add item to cart
   const addToCart = (name, price) => {
     setItems((prevState) => [...prevState, { name, price }]);
-    setCartTotal(cartTotal - price);
+    setCartTotal(cartTotal + price);
   };
 
   // Function to remove item from cart
