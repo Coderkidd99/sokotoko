@@ -9,6 +9,7 @@ import "../App";
 import LoginModal from "./LoginModal";
 import { useContext, useState } from "react";
 import CartContext from "./CartContext";
+import CartItems from "./CartItems";
 
 function Dashboard({ loggedIn, handleLogout }) {
   const { cartItems } = useContext(CartContext);
@@ -78,12 +79,18 @@ function Dashboard({ loggedIn, handleLogout }) {
                 <Link
                   to="/CartPage"
                   className="relative cursor-pointer hover:text-gray-600"
+                  onClick={toggleCart}
                 >
                   <BsCart4 size={24} />
                   <span className="absolute top-0 right-0 -mt-1 -mr-1 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex justify-center items-center">
                     {cartItems.length}
                   </span>
                 </Link>
+                {showCart && (
+                  <div>
+                    <CartItems showCart={showCart} toggleCart={toggleCart} />
+                  </div>
+                )}
                 <li className="cursor-pointer hover:text-gray-600">
                   <button onClick={toggleModal}>Sign In</button>
                   <LoginModal modal={modal} toggleModal={toggleModal} />
