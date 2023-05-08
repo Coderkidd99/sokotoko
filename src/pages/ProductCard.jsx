@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useContext } from "react";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { FiPlus } from "react-icons/fi";

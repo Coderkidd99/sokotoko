@@ -7,18 +7,12 @@ import { Link } from "react-router-dom";
 import Logo from "../images/logo.png";
 import "../App";
 import LoginModal from "./LoginModal";
-import CartModal from "./CartModal";
 import { useContext, useState } from "react";
 import CartContext from "./CartContext";
 
 function Dashboard({ loggedIn, handleLogout }) {
   const { items } = useContext(CartContext);
   const [modal, setModal] = useState(false);
-  const [showCart, setShowCart] = useState(false);
-
-  const handleCartClick = () => {
-    setShowCart(!showCart);
-  };
 
   function toggleModal() {
     setModal(!modal);
@@ -75,18 +69,12 @@ function Dashboard({ loggedIn, handleLogout }) {
                   <MdFavoriteBorder size={24} />
                 </li>
 
-                <li
-                  className="relative cursor-pointer hover:text-gray-600"
-                  onClick={handleCartClick}
-                >
+                <li className="relative cursor-pointer hover:text-gray-600">
                   <BsCart4 size={24} />
                   <span className="absolute top-0 right-0 -mt-1 -mr-1 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex justify-center items-center">
                     {items.length}
                   </span>
                 </li>
-                {showCart && (
-                  <CartModal items={items} />
-                )}
                 <li className="cursor-pointer hover:text-gray-600">
                   <button onClick={toggleModal}>Sign In</button>
                   <LoginModal modal={modal} toggleModal={toggleModal} />

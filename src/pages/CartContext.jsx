@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState } from "react";
 
-const CartContext = createContext();
+export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [items, setItems] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
 
   // Function to add item to cart
@@ -16,7 +15,7 @@ export const CartProvider = ({ children }) => {
 
   // Function to remove item from cart
   const removeFromCart = (item) => {
-    setCartItems(cartItems.filter((i) => i.id !== item.id));
+    setItems(items.filter((i) => i.id !== item.id));
     setCartTotal(cartTotal - item.price);
   };
 
@@ -27,4 +26,5 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-export default CartContext;
+export default CartProvider;
+
