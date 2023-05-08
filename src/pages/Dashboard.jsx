@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Logo from "../images/logo.png";
 import "../App";
 import LoginModal from "./LoginModal";
+import CartModal from "./CartModal";
 import { useContext, useState } from "react";
 import CartContext from "./CartContext";
 
@@ -16,7 +17,7 @@ function Dashboard({ loggedIn, handleLogout }) {
   const [showCart, setShowCart] = useState(false);
 
   const handleCartClick = () => {
-    setShowCart(true);
+    setShowCart(!showCart);
   };
 
   function toggleModal() {
@@ -27,7 +28,11 @@ function Dashboard({ loggedIn, handleLogout }) {
     <header className="flex flex-col sm:flex-row bg-white shadow px-28">
       <div className="flex justify-between items-center w-full px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center">
-          <img src={Logo} alt="Sokotoko logo" className="h-12 md:h-16 md:w-auto" />
+          <img
+            src={Logo}
+            alt="Sokotoko logo"
+            className="h-12 md:h-16 md:w-auto"
+          />
         </div>
         <form className="flex flex-1 h-10 ml-4">
           <input
@@ -70,14 +75,18 @@ function Dashboard({ loggedIn, handleLogout }) {
                   <MdFavoriteBorder size={24} />
                 </li>
 
-                <li className="relative cursor-pointer hover:text-gray-600">
-                  <Link to="/cart">
-                    <BsCart4 size={24} />
-                    <span className="absolute top-0 right-0 -mt-1 -mr-1 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex justify-center items-center">
-                      {items.length}
-                    </span>
-                  </Link>
+                <li
+                  className="relative cursor-pointer hover:text-gray-600"
+                  onClick={handleCartClick}
+                >
+                  <BsCart4 size={24} />
+                  <span className="absolute top-0 right-0 -mt-1 -mr-1 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex justify-center items-center">
+                    {items.length}
+                  </span>
                 </li>
+                {showCart && (
+                  <CartModal items={items} />
+                )}
                 <li className="cursor-pointer hover:text-gray-600">
                   <button onClick={toggleModal}>Sign In</button>
                   <LoginModal modal={modal} toggleModal={toggleModal} />
