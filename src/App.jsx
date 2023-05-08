@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import Login from "./pages/LoginModal";
 import User from "./pages/User";
 import Seller from "./pages/Seller";
+import CartPage from "./pages/CartPage";
+import CartModal from "./pages/CartModal";
 import Products from "./pages/Products";
 import { CartProvider } from "../src/pages/CartContext";
 import { ProductProvider } from "../src/pages/ProductContext";
@@ -27,6 +29,8 @@ export default function App() {
             <Route path="/user" element={<User />} />
             <Route path="/seller" element={<Seller />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/cartpage" element={<CartPage />} />
+            <Route path="/cartmodal" element={<CartModal />} />
           </Routes>
         </BrowserRouter>
       </CartProvider>
