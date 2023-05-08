@@ -3,6 +3,7 @@ function LoginModal({ modal, toggleModal }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     // handle form submission here
+    
   };
 
 

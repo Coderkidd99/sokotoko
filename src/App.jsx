@@ -9,6 +9,7 @@ import CartPage from "./pages/CartPage";
 import Products from "./pages/Products";
 import { CartProvider } from "../src/pages/CartContext";
 import { ProductProvider } from "../src/pages/ProductContext";
+import CartItems from "./pages/CartItems";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -29,6 +30,7 @@ export default function App() {
             <Route path="/seller" element={<Seller />} />
             <Route path="/products" element={<Products />} />
             <Route path="/cartpage" element={<CartPage />} />
+            <Route path="/cartitems" element={<CartItems />} />
           </Routes>
         </BrowserRouter>
       </CartProvider>

@@ -13,9 +13,13 @@ import CartContext from "./CartContext";
 function Dashboard({ loggedIn, handleLogout }) {
   const { cartItems } = useContext(CartContext);
   const [modal, setModal] = useState(false);
+  const [showCart, setShowCart] = useState(false);
 
   function toggleModal() {
     setModal(!modal);
+  }
+  function toggleCart() {
+    setShowCart(!showCart);
   }
 
   return (
