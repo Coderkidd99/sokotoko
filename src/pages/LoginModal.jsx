@@ -1,24 +1,24 @@
 /* eslint-disable react/prop-types */
+import { IoClose } from "react-icons/io5";
+
 function LoginModal({ modal, toggleModal }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     // handle form submission here
-    
-  };
 
+  };
 
   return (
     <>
       {modal && (
-        <>
-          <div className="fixed z-10 inset-0 overflow-y-auto bg-gray-500 bg-opacity-75">
-            <div className="relative top-1/2 transform -translate-y-1/2 mx-auto w-full sm:w-96 bg-white rounded-lg shadow-lg p-6">
+        <div className="fixed z-10 inset-0 overflow-y-auto">
+          <div className="flex items-center justify-center min-h-screen">
+            <div className="relative bg-white right-0 w-auto rounded-lg shadow-lg p-5">
               <button
+                className="absolute top-0 right-0 m-3"
                 onClick={toggleModal}
-                className="absolute top-0 right-0 p-2 text-gray-600 hover:text-gray-800"
               >
-                <span className="sr-only">Close</span>
-                <span className="block rounded-full text-4xl">X</span>
+                <IoClose className="text-gray-500 hover:text-gray-800 w-6 h-6" />
               </button>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <h2 className="text-xl font-bold">Sign in to your account</h2>
@@ -59,7 +59,7 @@ function LoginModal({ modal, toggleModal }) {
               </form>
             </div>
           </div>
-        </>
+        </div>
       )}
     </>
   );
