@@ -27,7 +27,7 @@ function Dashboard({ loggedIn, handleLogout }) {
     <header className="flex flex-col sm:flex-row bg-white shadow px-28">
       <div className="flex justify-between items-center w-full px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center">
-          <Link to="/home">
+          <Link to="/">
             <img
               src={Logo}
               alt="Sokotoko logo"
