@@ -14,7 +14,7 @@ const CartPage = () => {
       ) : (
         <div className="flex flex-col justify-center items-center p-4">
           <h2 className="text-xl font-bold border-1 p-5 mt-5 ">
-            Shopping Cart is Empty
+            Shopping Cart is Empty!
           </h2>
         </div>
       )}
