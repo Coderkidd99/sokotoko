@@ -12,7 +12,7 @@ const CartPage = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center px-4">
       <div className="bg-white rounded-lg shadow-lg p-4 max-w-xl w-full">
-        {cartItems.length === 0 ? (
+        {cartItems.length === 1 ? (
           <div className="flex flex-col justify-center items-center p-4">
             <h2 className="text-lg font-medium">Shopping Cart is Empty!</h2>
           </div>
