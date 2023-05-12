@@ -23,9 +23,22 @@ export const CartProvider = ({ children }) => {
     setCartItems([]);
     setCartTotal(0);
   };
+
+  // Function to decrement item quantity in cart
+  const decrementCartItem = (item) => {
+    const itemIndex = cartItems.findIndex((i) => i.id === item.id);
+    const newCartItems = [...cartItems];
+    const itemQuantity = newCartItems[itemIndex].quantity;
+    if (itemQuantity > 1) {
+      newCartItems[itemIndex].quantity = itemQuantity - 1;
+      setCartItems(newCartItems);
+      setCartTotal(cartTotal - item.price);
+    }
+  };
+
   return (
     <CartContext.Provider
-      value={{ cartItems, cartTotal, addToCart, removeFromCart, clearCart }}
+      value={{ cartItems, cartTotal, addToCart, removeFromCart, clearCart, decrementCartItem }}
     >
       {children}
     </CartContext.Provider>
