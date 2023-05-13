@@ -2,8 +2,55 @@
 import { IoClose } from "react-icons/io5";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import CartContext from "./CartContext";
 
 function CartItems({ showCart, toggleCart }) {
+  const { cartItems, removeFromCart ,addToCart, decrementCartItem} = useContext(CartContext);
+  
+  const renderCartItems = () => {
+    return cartItems.map((item) => (
+      <div className="flex flex-row mb-4" key={item.id}>
+        <img
+          className="h-16 w-16 rounded-md object-cover"
+          src={item.image}
+          alt={item.title}
+        />
+        <div className="ml-2 flex flex-col justify-between">
+          <div>
+            <h1 className="text-sm font-medium">{item.title}</h1>
+            <p className="text-xs text-gray-500">{item.description}</p>
+            <p className="text-sm font-medium">${item.price}</p>
+          </div>
+          <div className="flex items-center mt-2">
+            <button
+              className="px-2 py-1 rounded-md bg-gray-200 text-gray-500 hover:bg-gray-300"
+              onClick={() => decrementCartItem(item.id)}
+            >
+              -
+            </button>
+            <p className="mx-2">{item.quantity}</p>
+            <button
+              className="px-2 py-1 rounded-md bg-gray-200 text-gray-500 hover:bg-gray-300"
+              onClick={() => addToCart(item.id, item.title, item.price)}
+            >
+              +
+            </button>
+            <p className="text-sm font-medium ml-auto">
+              ${item.price * item.quantity}
+            </p>
+            <button
+              className="ml-2 text-red-500 hover:text-red-700"
+              onClick={() => removeFromCart(item)}
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
+    ));
+  };
+  
   return (
     <div>
       {showCart && (
@@ -21,7 +68,7 @@ function CartItems({ showCart, toggleCart }) {
                   <FaShoppingCart className="text-gray-500 mr-2" />
                   <h1 className="text-lg font-medium">Shopping Cart</h1>
                 </div>
-                <div className="flex flex-col">{/* cart items here */}</div>
+                <div className="flex flex-col">{renderCartItems()}</div>
                 <div className="flex justify-end mt-4">
                   <Link to="/cartpage">
                     <button className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600"  onClick={toggleCart}>
@@ -38,4 +85,4 @@ function CartItems({ showCart, toggleCart }) {
   );
 }
 
-export default CartItems;
+export default CartItems
