@@ -10,7 +10,7 @@ function CartItems({ showCart, toggleCart }) {
   
   const renderCartItems = () => {
     return cartItems.map((item) => (
-      <div className="flex flex-row mb-4" key={item.id}>
+      <div className="relative z-50 flex flex-row mb-4" key={item.id}>
         <img
           className="h-16 w-16 rounded-md object-cover"
           src={item.image}
@@ -54,7 +54,7 @@ function CartItems({ showCart, toggleCart }) {
   return (
     <div>
       {showCart && (
-        <div className="fixed z-100 inset-0 overflow-y-auto">
+        <div className="fixed z-50 inset-0 overflow-y-auto">
           <div className="flex items-start justify-end min-h-screen">
             <div className="relative bg-white right-0 w-11/12 md:w-2/3 lg:w-1/2 xl:w-1/3 rounded-lg shadow-lg">
               <button

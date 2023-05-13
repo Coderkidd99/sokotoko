@@ -20,8 +20,7 @@ function ProductCard({
 
   const imageStyle = "object-cover w-48 h-48 ";
   const price = product?.price || "";
-  const name = product?.title || "";
-
+ 
   return (
     <div className="overflow-hidden relative">
       {showHeart && (

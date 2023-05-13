@@ -30,17 +30,17 @@ const CartPage = () => {
                 >
                   <img
                     src={item.image}
-                    alt={item.name}
+                    alt={item.title}
                     className="w-16 h-16 object-cover rounded-lg"
                   />
                   <div className="ml-4">
-                    <h3 className="font-medium text-gray-800">{item.name}</h3>
+                    <h3 className="font-medium text-gray-800">{item.title}</h3>
                     <p className="text-gray-500">{item.price}</p>
                   </div>
                   <div className="flex justify-center items-center">
                     <button
                       className="text-gray-400 hover:text-gray-800"
-                      onClick={() => decrementCartItem(item.id)}
+                      onClick={() => decrementCartItem(item)}
                     >
                       <FaMinus />
                     </button>
