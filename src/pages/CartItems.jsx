@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { IoClose } from "react-icons/io5";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaTrash, FaMinus, FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import CartContext from "./CartContext";
@@ -27,23 +27,23 @@ function CartItems({ showCart, toggleCart }) {
               className="px-2 py-1 rounded-md bg-gray-200 text-gray-500 hover:bg-gray-300"
               onClick={() => decrementCartItem(item.id)}
             >
-              -
+               <FaMinus />
             </button>
             <p className="mx-2">{item.quantity}</p>
             <button
               className="px-2 py-1 rounded-md bg-gray-200 text-gray-500 hover:bg-gray-300"
               onClick={() => addToCart(item.id, item.title, item.price)}
             >
-              +
+              <FaPlus />
             </button>
             <p className="text-sm font-medium ml-auto">
               ${item.price * item.quantity}
             </p>
             <button
-              className="ml-2 text-red-500 hover:text-red-700"
+              className="ml-2 text-gray-400 hover:text-gray-800"
               onClick={() => removeFromCart(item)}
             >
-              Remove
+              <FaTrash/>
             </button>
           </div>
         </div>
@@ -64,7 +64,7 @@ function CartItems({ showCart, toggleCart }) {
                 <IoClose className="text-gray-500 hover:text-gray-800 w-6 h-6" />
               </button>
               <div className="p-5">
-                <div className="flex items-center mb-4">
+                <div className="flex  items-center border-b-2 pb-2">
                   <FaShoppingCart className="text-gray-500 mr-2" />
                   <h1 className="text-lg font-medium">Shopping Cart</h1>
                 </div>
