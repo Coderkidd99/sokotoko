@@ -6,16 +6,21 @@ import { Link } from "react-router-dom";
 import CartContext from "./CartContext";
 import ProductContext from "./ProductContext";
 
-function ProductCard({ product, isFavorite = false, toggleFavorite = () => {} }) {
+function ProductCard({
+  product,
+  isFavorite = false,
+  toggleFavorite = () => {},
+}) {
   const { addToCart } = useContext(CartContext);
   const { showHeart } = useContext(ProductContext);
 
   const handleAddToCart = () => {
-    addToCart(product);
-  };
+    addToCart(product.id, product.title, product.price);
+};
 
   const imageStyle = "object-cover w-48 h-48 ";
   const price = product?.price || "";
+  const name = product?.title || "";
 
   return (
     <div className="overflow-hidden relative">
@@ -24,8 +29,10 @@ function ProductCard({ product, isFavorite = false, toggleFavorite = () => {} })
           <MdFavorite size={24} />
         </div>
       )}
-      <div className="relative flex justify-center aspect-w-1 aspect-h-1 hover:shadow-md z-10 shadow-md-left shadow-md-right
-">
+      <div
+        className="relative flex justify-center aspect-w-1 aspect-h-1 hover:shadow-md z-10 shadow-md-left shadow-md-right
+"
+      >
         <img src={product?.image} alt={product?.title} className={imageStyle} />
       </div>
       <div className="p-4 bg-white">
@@ -40,8 +47,13 @@ function ProductCard({ product, isFavorite = false, toggleFavorite = () => {} })
               className={`text-gray-500 ${isFavorite ? "text-red-500" : ""}`}
               onClick={toggleFavorite}
             >
-              {isFavorite ? <MdFavorite size={24} /> : <MdFavoriteBorder size={24} />}
+              {isFavorite ? (
+                <MdFavorite size={24} />
+              ) : (
+                <MdFavoriteBorder size={24} />
+              )}
             </button>
+
             <button
               type="button"
               className="ml-4 bg-gray-900 text-white py-2 px-4 rounded-full flex items-center"

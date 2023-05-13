@@ -9,10 +9,12 @@ export const CartProvider = ({ children }) => {
 
 
   // Function to add item to cart
-  const addToCart = (id, name, price) => {
-    setCartItems((prevState) => [...prevState, { id, name, price }]);
+  const addToCart = (id, title, price) => {
+    setCartItems((prevState) => [...prevState, { id, title, price }]);
     setCartTotal(cartTotal + price);
+    console.log(cartItems);
   };
+
 
   // Function to remove item from cart
   const removeFromCart = (item) => {
@@ -29,13 +31,20 @@ export const CartProvider = ({ children }) => {
   const decrementCartItem = (item) => {
     const itemIndex = cartItems.findIndex((i) => i.id === item.id);
     const newCartItems = [...cartItems];
-    const itemQuantity = newCartItems[itemIndex].quantity;
-    if (itemQuantity > 1) {
-      newCartItems[itemIndex].quantity = itemQuantity - 1;
-      setCartItems(newCartItems);
-      setCartTotal(cartTotal - item.price);
+    if (itemIndex >= 0) {
+      const itemQuantity = newCartItems[itemIndex].quantity;
+      if (itemQuantity > 1) {
+        newCartItems[itemIndex].quantity = itemQuantity - 1;
+        setCartItems(newCartItems);
+        setCartTotal(cartTotal - item.price);
+      }
+    } else {
+      console.log("Item not found in cart");
     }
   };
+  
+  
+  
 
   return (
     <CartContext.Provider

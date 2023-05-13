@@ -4,8 +4,9 @@ import { createContext, useState } from "react";
 const ProductContext = createContext({
   itemsListing: [],
   setItemsListing: () => {},
-  showHeart: () => {},
-  favorites: []
+  favorites: [],
+  setFavorites: () => {},
+  showHeart: false,
 });
 
 export const ProductProvider = ({ children }) => {
