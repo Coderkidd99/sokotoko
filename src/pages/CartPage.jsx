@@ -62,7 +62,7 @@ const CartPage = () => {
               ))}
               <div className="mt-4 flex justify-between items-center">
                 <p className="font-medium text-gray-800">Total</p>
-                <p className="font-medium text-gray-800">{cartTotal}</p>
+                <p className="font-medium text-gray-800">{addPriceTotal}</p>
               </div>
               <button
                 className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded mt-4 w-full"
