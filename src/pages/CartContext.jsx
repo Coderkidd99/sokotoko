@@ -7,6 +7,7 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
 
+
   // Function to add item to cart
   const addToCart = (id, name, price) => {
     setCartItems((prevState) => [...prevState, { id, name, price }]);

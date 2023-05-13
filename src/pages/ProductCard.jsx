@@ -1,18 +1,17 @@
 /* eslint-disable react/prop-types */
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import CartContext from "./CartContext";
+import ProductContext from "./ProductContext";
 
 function ProductCard({ product, isFavorite = false, toggleFavorite = () => {} }) {
-  const { addItem } = useContext(CartContext);
-  const [showHeart, setShowHeart] = useState(false);
+  const { addToCart } = useContext(CartContext);
+  const { showHeart } = useContext(ProductContext);
 
   const handleAddToCart = () => {
-    addItem(product);
-    setShowHeart(true);
-    setTimeout(() => setShowHeart(false), 2000);
+    addToCart(product);
   };
 
   const imageStyle = "object-cover w-48 h-48 ";

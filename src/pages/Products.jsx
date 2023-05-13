@@ -1,11 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import {  useEffect, useContext } from "react";
 import ProductCard from "./ProductCard";
 import ProductContext from "./ProductContext";
 
 const Products = () => {
-  const { itemsListing, setItemsListing } = useContext(ProductContext);
+  const { itemsListing, setItemsListing, favorites, setFavorites } = useContext(ProductContext);
 
-  const [favorites, setFavorites] = useState([]);
 
   const toggleFavorite = (productId) => {
     if (favorites.includes(productId)) {
