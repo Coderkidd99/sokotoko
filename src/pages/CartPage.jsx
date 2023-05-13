@@ -35,25 +35,25 @@ const CartPage = () => {
                   />
                   <div className="ml-4">
                     <h3 className="font-medium text-gray-800">{item.title}</h3>
-                    <p className="text-gray-500">{item.price}</p>
+                    <p className="text-gray-500">${item.price * item.quantity}</p>
                   </div>
                   <div className="flex justify-center items-center">
                     <button
                       className="text-gray-400 hover:text-gray-800"
-                      onClick={() => decrementCartItem(item)}
+                      onClick={() => decrementCartItem(item.id)}
                     >
                       <FaMinus />
                     </button>
                     <span className="mx-2">{item.quantity}</span>
                     <button
                       className="text-gray-400 hover:text-gray-800"
-                      onClick={() => addToCart(item)}
+                      onClick={() => addToCart(item.id, item.title, item.price)}
                     >
                       <FaPlus />
                     </button>
                     <button
                       className="text-gray-400 hover:text-gray-800 ml-4"
-                      onClick={() => removeFromCart(item.id)}
+                      onClick={() => removeFromCart(item)}
                     >
                       <FaTrash />
                     </button>

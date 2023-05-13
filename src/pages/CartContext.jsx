@@ -56,6 +56,13 @@ export const CartProvider = ({ children }) => {
       console.log("Item not found in cart");
     }
   };
+
+  const itemPriceTotal = () => {
+    const total = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+    setCartTotal(total);
+    console.log(cartTotal);
+  };
+  
   
   
 
@@ -68,6 +75,7 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         clearCart,
         decrementCartItem,
+        itemPriceTotal,
       }}
     >
       {children}
