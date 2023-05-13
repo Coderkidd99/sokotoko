@@ -3,7 +3,7 @@ import { FaTrash, FaMinus, FaPlus } from "react-icons/fa";
 import CartContext from "./CartContext";
 
 const CartPage = () => {
-  const { cartItems, cartTotal, removeFromCart, addToCart, decrementCartItem } = useContext(CartContext);
+  const { cartItems, addPriceTotal, removeFromCart, addToCart, decrementCartItem } = useContext(CartContext);
 
   const handleCheckout = () => {
     // Implement your checkout logic here

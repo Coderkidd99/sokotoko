@@ -57,7 +57,8 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const itemPriceTotal = () => {
+  //work on this 5/14/2023 to add the total price for the shopping cart
+  const addPriceTotal = () => {
     const total = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
     setCartTotal(total);
     console.log(cartTotal);
@@ -75,7 +76,7 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         clearCart,
         decrementCartItem,
-        itemPriceTotal,
+        addPriceTotal,
       }}
     >
       {children}
