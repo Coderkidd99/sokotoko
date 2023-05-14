@@ -3,20 +3,27 @@ import { createContext, useState } from "react";
 const CartContext = createContext({
   cartItems: [],
   cartTotal: 0,
-  addToCart: () => {},
+  increaseCartQuantity: () => {},
   removeFromCart: () => {},
   clearCart: () => {},
-  decrementCartItem: () => {},
+  decreaseCartQuantity: () => {},
   addPriceTotal: () => {},
+  getItemQuantity: () => {},
 });
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
 
-  const addToCart = (id, title, price) => {
-    const existingItem = cartItems.find((item) => item.id === id);
 
+
+  function getItemQuantity(id) {
+    return cartItems.find(item => item.id === id)?.quantity || 0
+  }
+
+  //add item to cart
+  const increaseCartQuantity = (id, title, price) => {
+    const existingItem = cartItems.find((item) => item.id === id);
     if (existingItem) {
       setCartItems((prevState) =>
         prevState.map((item) =>
@@ -34,11 +41,31 @@ export const CartProvider = ({ children }) => {
         },
       ]);
     }
+    
   };
 
+  //decrease item from cart
+  const decreaseCartQuantity = (id, price) => {
+    const itemIndex = cartItems.findIndex((item) => item.id === id);
+    const newCartItems = [...cartItems];
+    if (itemIndex >= 0) {
+      const itemQuantity = newCartItems[itemIndex].quantity;
+      if (itemQuantity > 1) {
+        newCartItems[itemIndex].quantity = itemQuantity - 1;
+        setCartItems(newCartItems);
+        setCartTotal(prevTotal => prevTotal - price);
+      }
+    } else {
+      console.log("Item not found in cart");
+    }
+    
+  };
+  
+
+  //delete and remove the item completely from cart
   const removeFromCart = (item) => {
     setCartItems(cartItems.filter((i) => i.id !== item.id));
-    setCartTotal(cartTotal - item.price);
+    setCartTotal(prevTotal => prevTotal - item.price);
   };
 
   const clearCart = () => {
@@ -46,27 +73,14 @@ export const CartProvider = ({ children }) => {
     setCartTotal(0);
   };
 
-  const decrementCartItem = (item) => {
-    const itemIndex = cartItems.findIndex((i) => i.id === item.id);
-    const newCartItems = [...cartItems];
-    if (itemIndex >= 0) {
-      const itemQuantity = newCartItems[itemIndex].quantity;
-      if (itemQuantity > 1) {
-        newCartItems[itemIndex].quantity = itemQuantity - 1;
-        setCartItems(newCartItems);
-        setCartTotal(cartTotal - item.price);
-      }
-    } else {
-      console.log("Item not found in cart");
-    }
-  };
+
+  //add the total amount of product x qty
   const addPriceTotal = () => {
     const total = cartItems.reduce(
-      (acc, item) => acc + item.price * item.quantity,
+      (acc, item) => acc + item.price * (item.quantity || 1),
       0
     );
-    console.log("Total price: ", total);
-    setCartTotal(total);
+    setCartTotal(prevTotal => prevTotal + total);
   };
   
   
@@ -76,11 +90,12 @@ export const CartProvider = ({ children }) => {
       value={{
         cartItems,
         cartTotal,
-        addToCart,
+        increaseCartQuantity,
         removeFromCart,
         clearCart,
-        decrementCartItem,
+        decreaseCartQuantity,
         addPriceTotal,
+        getItemQuantity
       }}
     >
       {children}

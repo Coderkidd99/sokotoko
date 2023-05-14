@@ -11,11 +11,11 @@ function ProductCard({
   isFavorite = false,
   toggleFavorite = () => {},
 }) {
-  const { addToCart } = useContext(CartContext);
+  const { increaseCartQuantity } = useContext(CartContext);
   const { showHeart } = useContext(ProductContext);
 
   const handleAddToCart = () => {
-    addToCart(product.id, product.title, product.price);
+    increaseCartQuantity(product.id, product.title, product.price);
 };
 
   const imageStyle = "object-cover w-48 h-48 ";

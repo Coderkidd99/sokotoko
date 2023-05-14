@@ -3,7 +3,7 @@ import { FaTrash, FaMinus, FaPlus } from "react-icons/fa";
 import CartContext from "./CartContext";
 
 const CartPage = () => {
-  const { cartItems, cartTotal, removeFromCart, addToCart, decrementCartItem } = useContext(CartContext);
+  const { cartItems, cartTotal, getItemQuantity, removeFromCart, increaseCartQuantity, decreaseCartQuantity } = useContext(CartContext);
 
   const handleCheckout = () => {
     // Implement your checkout logic here
@@ -35,19 +35,19 @@ const CartPage = () => {
                   />
                   <div className="ml-4">
                     <h3 className="font-medium text-gray-800">{item.title}</h3>
-                    <p className="text-gray-500">${item.price * item.quantity}</p>
+                    <p className="text-gray-500">${item.price.toFixed(2) * item.quantity}</p>
                   </div>
                   <div className="flex justify-center items-center">
                     <button
                       className="text-gray-400 hover:text-gray-800"
-                      onClick={() => decrementCartItem(item.id)}
+                      onClick={() => decreaseCartQuantity(item.id)}
                     >
                       <FaMinus />
                     </button>
                     <span className="mx-2">{item.quantity}</span>
                     <button
                       className="text-gray-400 hover:text-gray-800"
-                      onClick={() => addToCart(item.id, item.title, item.price)}
+                      onClick={() => increaseCartQuantity(item.id, item.title, item.price)}
                     >
                       <FaPlus />
                     </button>
@@ -63,7 +63,7 @@ const CartPage = () => {
               ))}
               <div className="mt-4 flex justify-between items-center">
                 <p className="font-medium text-gray-800">Total</p>
-                <p className="font-medium text-gray-800">${cartTotal}</p>
+                <p className="font-medium text-gray-800">${cartTotal.length}</p>
               </div>
               <button
                 className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded mt-4 w-full"

@@ -6,7 +6,7 @@ import { useContext } from "react";
 import CartContext from "./CartContext";
 
 function CartItems({ showCart, toggleCart }) {
-  const { cartItems, removeFromCart ,addToCart, decrementCartItem} = useContext(CartContext);
+  const { cartItems, getItemQuantity, removeFromCart ,increaseCartQuantity, decreaseCartQuantity} = useContext(CartContext);
   
   const renderCartItems = () => {
     return cartItems.map((item) => (
@@ -25,14 +25,14 @@ function CartItems({ showCart, toggleCart }) {
           <div className="flex items-center mt-2">
             <button
               className="px-2 py-1 rounded-md bg-gray-200 text-gray-500 hover:bg-gray-300"
-              onClick={() => decrementCartItem(item.id)}
+              onClick={() => decreaseCartQuantity(item.id, item.title, item.price)}
             >
                <FaMinus />
             </button>
             <p className="mx-2">{item.quantity}</p>
             <button
               className="px-2 py-1 rounded-md bg-gray-200 text-gray-500 hover:bg-gray-300"
-              onClick={() => addToCart(item.id, item.title, item.price)}
+              onClick={() => increaseCartQuantity(item.id, item.title, item.price)}
             >
               <FaPlus />
             </button>
