@@ -1,13 +1,19 @@
-/* eslint-disable react/prop-types */
 import { createContext, useState } from "react";
 
-const CartContext = createContext();
+const CartContext = createContext({
+  cartItems: [],
+  cartTotal: 0,
+  addToCart: () => {},
+  removeFromCart: () => {},
+  clearCart: () => {},
+  decrementCartItem: () => {},
+  addPriceTotal: () => {},
+});
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
 
-  // Function to add item to cart
   const addToCart = (id, title, price) => {
     const existingItem = cartItems.find((item) => item.id === id);
 
@@ -24,13 +30,12 @@ export const CartProvider = ({ children }) => {
           id,
           title,
           price,
-          quantity: 1, // Initialize the quantity to 1 for new items
+          quantity: 1,
         },
       ]);
     }
   };
 
-  // Function to remove item from cart
   const removeFromCart = (item) => {
     setCartItems(cartItems.filter((i) => i.id !== item.id));
     setCartTotal(cartTotal - item.price);
@@ -41,7 +46,6 @@ export const CartProvider = ({ children }) => {
     setCartTotal(0);
   };
 
-  // Function to decrement item quantity in cart
   const decrementCartItem = (item) => {
     const itemIndex = cartItems.findIndex((i) => i.id === item.id);
     const newCartItems = [...cartItems];
@@ -57,15 +61,14 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  //work on this 5/14/2023 to add the total price for the shopping cart
   const addPriceTotal = () => {
-    const total = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+    const total = cartItems.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
+    );
+    console.log("total: ", total);
     setCartTotal(total);
-    console.log(cartTotal);
   };
-  
-  
-  
 
   return (
     <CartContext.Provider
