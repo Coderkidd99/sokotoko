@@ -3,7 +3,7 @@ import { FaTrash, FaMinus, FaPlus } from "react-icons/fa";
 import CartContext from "./CartContext";
 
 const CartPage = () => {
-  const { cartItems, cartTotal, getItemQuantity, removeFromCart, increaseCartQuantity, decreaseCartQuantity } = useContext(CartContext);
+  const { cartItems, cartTotal, removeFromCart, increaseCartQuantity, decreaseCartQuantity } = useContext(CartContext);
 
   const handleCheckout = () => {
     // Implement your checkout logic here
@@ -63,7 +63,7 @@ const CartPage = () => {
               ))}
               <div className="mt-4 flex justify-between items-center">
                 <p className="font-medium text-gray-800">Total</p>
-                <p className="font-medium text-gray-800">${cartTotal.length}</p>
+                <p className="font-medium text-gray-800">${cartTotal.quantity}</p>
               </div>
               <button
                 className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded mt-4 w-full"

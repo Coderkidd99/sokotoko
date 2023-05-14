@@ -6,7 +6,7 @@ import { useContext } from "react";
 import CartContext from "./CartContext";
 
 function CartItems({ showCart, toggleCart }) {
-  const { cartItems, getItemQuantity, removeFromCart ,increaseCartQuantity, decreaseCartQuantity} = useContext(CartContext);
+  const { cartItems, removeFromCart ,increaseCartQuantity, decreaseCartQuantity} = useContext(CartContext);
   
   const renderCartItems = () => {
     return cartItems.map((item) => (
