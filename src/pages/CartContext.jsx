@@ -60,15 +60,16 @@ export const CartProvider = ({ children }) => {
       console.log("Item not found in cart");
     }
   };
-
   const addPriceTotal = () => {
     const total = cartItems.reduce(
       (acc, item) => acc + item.price * item.quantity,
       0
     );
-    console.log("total: ", total);
+    console.log("Total price: ", total);
     setCartTotal(total);
   };
+  
+  
 
   return (
     <CartContext.Provider
