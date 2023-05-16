@@ -10,6 +10,8 @@ import LoginModal from "./LoginModal";
 import { useContext, useState } from "react";
 import CartContext from "./CartContext";
 import CartItems from "./CartItems";
+import LoginButton from "../components/LoginButton";
+import LogoutButton from "../components/LogoutButton";
 
 function Dashboard({ loggedIn, handleLogout }) {
   const { cartItems } = useContext(CartContext);
@@ -67,7 +69,7 @@ function Dashboard({ loggedIn, handleLogout }) {
                   className="cursor-pointer hover:text-gray-600"
                   onClick={handleLogout}
                 >
-                  Logout
+                  <LogoutButton/>
                 </li>
               </>
             ) : (
@@ -92,7 +94,7 @@ function Dashboard({ loggedIn, handleLogout }) {
                 )}
 
                 <li className="cursor-pointer hover:text-gray-600">
-                  <button onClick={toggleModal}>Sign In</button>
+                  < LoginButton />
                   <LoginModal modal={modal} toggleModal={toggleModal} />
                 </li>
               </>
