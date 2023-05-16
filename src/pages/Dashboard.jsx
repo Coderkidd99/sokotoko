@@ -6,21 +6,17 @@ import { BiStore } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import Logo from "../images/logo.png";
 import "../App";
-import LoginModal from "./LoginModal";
 import { useContext, useState } from "react";
 import CartContext from "./CartContext";
 import CartItems from "./CartItems";
 import LoginButton from "../components/LoginButton";
 import LogoutButton from "../components/LogoutButton";
 
-function Dashboard({ loggedIn, handleLogout }) {
+function Dashboard() {
   const { cartItems } = useContext(CartContext);
-  const [modal, setModal] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
-  function toggleModal() {
-    setModal(!modal);
-  }
+  
   function toggleCart() {
     setShowCart(!showCart);
   }
@@ -52,27 +48,6 @@ function Dashboard({ loggedIn, handleLogout }) {
         </form>
         <nav className="flex p-2 justify-evenly items-center">
           <ul className="flex items-center list-none space-x-4">
-            {loggedIn ? (
-              <>
-                <li>
-                  <Link to="/user">
-                    <FaUserCircle size={24} />
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/seller">
-                    <BiStore size={24} />
-                    <span className="ml-2">{cartItems.length}</span>
-                  </Link>
-                </li>
-                <li
-                  className="cursor-pointer hover:text-gray-600"
-                  onClick={handleLogout}
-                >
-                  <LogoutButton/>
-                </li>
-              </>
-            ) : (
               <>
                 <li className="cursor-pointer hover:text-gray-600">
                   <MdFavoriteBorder size={24} />
@@ -95,10 +70,10 @@ function Dashboard({ loggedIn, handleLogout }) {
 
                 <li className="cursor-pointer hover:text-gray-600">
                   < LoginButton />
-                  <LoginModal modal={modal} toggleModal={toggleModal} />
+                  <LogoutButton />
                 </li>
               </>
-            )}
+            
           </ul>
         </nav>
       </div>
