@@ -3,7 +3,7 @@ import { useState } from "react";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Login from "./pages/LoginModal";
-import User from "./pages/User";
+import Profile from "./components/Profile";
 import Seller from "./pages/Seller";
 import CartPage from "./pages/CartPage";
 import Products from "./pages/Products";
@@ -26,7 +26,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/user" element={<User />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/seller" element={<Seller />} />
             <Route path="/products" element={<Products />} />
             <Route path="/cartpage" element={<CartPage />} />
