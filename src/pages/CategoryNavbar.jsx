@@ -15,30 +15,6 @@ function CategoryNavbar() {
         { label: "Women's Clothing", link: '/womensclothing' },
       ],
     },
-    {
-      label: 'Jewellery',
-      subMenuItems: [
-        { label: 'Submenu Item 1', link: '#' },
-        { label: 'Submenu Item 2', link: '#' },
-        { label: 'Submenu Item 3', link: '#' },
-      ],
-    },
-    {
-      label: 'Electronics',
-      subMenuItems: [
-        { label: 'Submenu Item 1', link: '#' },
-        { label: 'Submenu Item 2', link: '#' },
-        { label: 'Submenu Item 3', link: '#' },
-      ],
-    },
-    {
-      label: 'Examples',
-      subMenuItems: [
-        { label: 'Submenu Item 1', link: '#' },
-        { label: 'Submenu Item 2', link: '#' },
-        { label: 'Submenu Item 3', link: '#' },
-      ],
-    },
   ];
 
   return (

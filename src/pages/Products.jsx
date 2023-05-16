@@ -15,7 +15,7 @@ const Products = () => {
   };
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products?sort=desc")
+    fetch("https://fakestoreapi.com/products/")
       .then((response) => response.json())
       .then((apiData) => setItemsListing(apiData))
       .catch((error) => console.log(error));

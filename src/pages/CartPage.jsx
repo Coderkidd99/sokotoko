@@ -3,11 +3,16 @@ import { FaTrash, FaMinus, FaPlus } from "react-icons/fa";
 import CartContext from "./CartContext";
 
 const CartPage = () => {
-  const { cartItems, cartTotal, removeFromCart, increaseCartQuantity, decreaseCartQuantity } = useContext(CartContext);
+  const { cartItems, removeFromCart, increaseCartQuantity, decreaseCartQuantity } = useContext(CartContext);
+
+
 
   const handleCheckout = () => {
     // Implement your checkout logic here
   };
+
+  const totalPrice  = cartItems.reduce((price, item) => price + item.quantity * item.price, 0 );
+  
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center px-4">
@@ -63,7 +68,7 @@ const CartPage = () => {
               ))}
               <div className="mt-4 flex justify-between items-center">
                 <p className="font-medium text-gray-800">Total</p>
-                <p className="font-medium text-gray-800">${cartTotal.quantity}</p>
+                <p className="font-medium text-gray-800">${totalPrice}</p>
               </div>
               <button
                 className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded mt-4 w-full"
