@@ -1,18 +1,32 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { FaTrash, FaMinus, FaPlus } from "react-icons/fa";
 import CartContext from "./CartContext";
+import axios from "axios";
 
 const CartPage = () => {
-  const { cartItems, removeFromCart, increaseCartQuantity, decreaseCartQuantity } = useContext(CartContext);
+  const {
+    cartItems,
+    removeFromCart,
+    increaseCartQuantity,
+    decreaseCartQuantity,
+  } = useContext(CartContext);
 
+  const [clientSecret, setClientSecret] = useState("");
 
-
-  const handleCheckout = () => {
-    // Implement your checkout logic here
+  const initiatePayment = async () => {
+    try {
+      const response = await axios.post("/create-checkout-session");
+      const { clientSecret } = response.data;
+      setClientSecret(clientSecret);
+    } catch (error) {
+      console.error("Error initiating payment:", error);
+    }
   };
 
-  const totalPrice  = cartItems.reduce((price, item) => price + item.quantity * item.price, 0 );
-  
+  const totalPrice = cartItems.reduce(
+    (price, item) => price + item.quantity * item.price,
+    0
+  );
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center px-4">
@@ -40,7 +54,9 @@ const CartPage = () => {
                   />
                   <div className="ml-4">
                     <h3 className="font-medium text-gray-800">{item.title}</h3>
-                    <p className="text-gray-500">${item.price.toFixed(2) * item.quantity}</p>
+                    <p className="text-gray-500">
+                      ${item.price.toFixed(2) * item.quantity}
+                    </p>
                   </div>
                   <div className="flex justify-center items-center">
                     <button
@@ -52,7 +68,9 @@ const CartPage = () => {
                     <span className="mx-2">{item.quantity}</span>
                     <button
                       className="text-gray-400 hover:text-gray-800"
-                      onClick={() => increaseCartQuantity(item.id, item.title, item.price)}
+                      onClick={() =>
+                        increaseCartQuantity(item.id, item.title, item.price)
+                      }
                     >
                       <FaPlus />
                     </button>
@@ -64,18 +82,20 @@ const CartPage = () => {
                     </button>
                   </div>
                 </div>
-                 
               ))}
               <div className="mt-4 flex justify-between items-center">
                 <p className="font-medium text-gray-800">Total</p>
                 <p className="font-medium text-gray-800">${totalPrice}</p>
               </div>
-              <button
-                className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded mt-4 w-full"
-                onClick={handleCheckout}
-              >
-                Checkout
-              </button>
+              <form action="/create-checkout-session" method="POST">
+                <button
+                  type="submit"
+                  className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded mt-4 w-full"
+                  onClick={initiatePayment}
+                >
+                  Pay Now
+                </button>
+              </form>
             </div>
           </>
         )}
