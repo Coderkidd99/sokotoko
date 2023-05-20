@@ -9,6 +9,8 @@ import Products from "./pages/Products";
 import { CartProvider } from "../src/pages/CartContext";
 import { ProductProvider } from "../src/pages/ProductContext";
 import CartItems from "./pages/CartItems";
+import CheckoutForm from "./pages/CheckoutForm";
+import PaymentPage from "./pages/PaymentPage";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -29,6 +31,8 @@ export default function App() {
             <Route path="/products" element={<Products />} />
             <Route path="/cartpage" element={<CartPage />} />
             <Route path="/cartitems" element={<CartItems />} />
+            <Route path="/checkoutform" element={<CheckoutForm />} />
+            <Route path="/paymentpage" element={<PaymentPage />} />
           </Routes>
         </BrowserRouter>
       </CartProvider>
