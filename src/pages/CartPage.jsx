@@ -15,7 +15,7 @@ const CartPage = () => {
 
   const initiatePayment = async () => {
     try {
-      const response = await axios.post("/create-checkout-session");
+      const response = await axios.post("/checkout");
       const { clientSecret } = response.data;
       setClientSecret(clientSecret);
     } catch (error) {
