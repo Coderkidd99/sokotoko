@@ -15,7 +15,7 @@ const CartPage = () => {
 
   const initiatePayment = async () => {
     try {
-      const response = await axios.post("/checkout");
+      const response = await axios.post("http://localhost:4000/checkout");
       const { clientSecret } = response.data;
       setClientSecret(clientSecret);
     } catch (error) {
@@ -87,15 +87,14 @@ const CartPage = () => {
                 <p className="font-medium text-gray-800">Total</p>
                 <p className="font-medium text-gray-800">${totalPrice}</p>
               </div>
-              <form action="/create-checkout-session" method="POST">
-                <button
-                  type="submit"
-                  className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded mt-4 w-full"
-                  onClick={initiatePayment}
-                >
-                  Pay Now
-                </button>
-              </form>
+
+              <button
+                type="submit"
+                className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded mt-4 w-full"
+                onClick={initiatePayment}
+              >
+                Pay Now
+              </button>
             </div>
           </>
         )}
