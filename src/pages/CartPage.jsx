@@ -1,7 +1,6 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { FaTrash, FaMinus, FaPlus } from "react-icons/fa";
 import CartContext from "./CartContext";
-import axios from "axios";
 
 const CartPage = () => {
   const {
@@ -11,16 +10,40 @@ const CartPage = () => {
     decreaseCartQuantity,
   } = useContext(CartContext);
 
-  const [clientSecret, setClientSecret] = useState("");
-
   const initiatePayment = async () => {
-    try {
-      const response = await axios.post("http://localhost:4000/checkout");
-      const { clientSecret } = response.data;
-      setClientSecret(clientSecret);
-    } catch (error) {
-      console.error("Error initiating payment:", error);
-    }
+    // const priceIds = cartItems.map((item) => ({
+
+    //   price: item.priceId,
+    //   quantity: item.quantity,
+
+    // }));
+
+    // sample from the stripe api
+    const items = [
+      {
+        id: 1,
+        priceId: "price_1N9qzHDzD0xdPkikJITO9PID",
+        title: "product zippo",
+        price: 99.99,
+        quantity: 3,
+      },
+    ];
+
+    await fetch("http://localhost:4000/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ items: items }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        if (response.url) {
+          window.location.assign(response.url); // forwarding user to stripe
+        }
+      });
   };
 
   const totalPrice = cartItems.reduce(

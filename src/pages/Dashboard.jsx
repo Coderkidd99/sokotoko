@@ -11,6 +11,7 @@ import CartContext from "./CartContext";
 import CartItems from "./CartItems";
 import LoginButton from "../components/LoginButton";
 import LogoutButton from "../components/LogoutButton";
+import Profile from "../components/Profile";
 
 function Dashboard() {
   const { cartItems } = useContext(CartContext);
@@ -72,6 +73,8 @@ function Dashboard() {
                   < LoginButton />
                   <LogoutButton />
                 </li>
+                <Profile />
+
               </>
             
           </ul>

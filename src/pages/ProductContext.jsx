@@ -10,12 +10,12 @@ const ProductContext = createContext({
 });
 
 export const ProductProvider = ({ children }) => {
-  const [itemsListing, setItemsListing] = useState([]);
+  const [products, setProducts] = useState([]);
   const [showHeart, setShowHeart] = useState(false);
   const [favorites, setFavorites] = useState([]);
 
   return (
-    <ProductContext.Provider value={{ itemsListing, setItemsListing, showHeart, setShowHeart, favorites, setFavorites}}>
+    <ProductContext.Provider value={{ products, setProducts, showHeart, setShowHeart, favorites, setFavorites}}>
       {children}
     </ProductContext.Provider>
   );

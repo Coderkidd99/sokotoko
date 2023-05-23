@@ -21,7 +21,7 @@ export const CartProvider = ({ children }) => {
     return quantity || 0;
   };
 
-  const increaseCartQuantity = (id, title, price) => {
+  const increaseCartQuantity = (id,title, price) => {
     const existingItemIndex = cartItems.findIndex((item) => item.id === id);
     if (existingItemIndex >= 0) {
       setCartItems((prevCartItems) =>
