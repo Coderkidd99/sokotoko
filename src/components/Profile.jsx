@@ -15,7 +15,7 @@ const Profile = () => {
     isAuthenticated && (
       <div className="flex">
         <img src={user.picture} alt={user.name} className="" />
-        <p className="text-sm font-normal">{user.email}</p>
+        <p className="font-normal">{user.email}</p>
       </div>
     )
   );
