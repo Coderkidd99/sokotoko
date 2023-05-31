@@ -14,7 +14,7 @@ const Profile = () => {
   return (
     isAuthenticated && (
       <div className="flex">
-        <img src={user.picture} alt={user.name} className="" />
+        <img src={user.picture} alt={user.name} className=" border-gray-500" />
         <p className="font-normal">{user.email}</p>
       </div>
     )
