@@ -14,6 +14,7 @@ const Home = () => {
             Shop our popular categories
           </h1>
         </div>
+        
 
         <div className="flex items-center justify-start ml-20 gap-11 flex-wrap">
           {products.map((item) => (
