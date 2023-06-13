@@ -18,7 +18,7 @@ function ProductCard({
     increaseCartQuantity(product.id, product.title, product.price);
 };
 
-  const imageStyle = "object-cover w-48 h-48 ";
+  const imageStyle =  "object-contain	 cursor-pointer w-[200px] h-[200px] ";
   const price = product?.price || "";
  
   return (
@@ -32,7 +32,9 @@ function ProductCard({
         className="relative flex justify-center aspect-w-1 aspect-h-1 hover:shadow-md z-10 shadow-md-left shadow-md-right
 "
       >
+        <Link to={`/product/${product?.id}`}>
         <img src={product?.image} alt={product?.title} className={imageStyle} />
+        </Link>
       </div>
       <div className="p-4 bg-white">
         <Link to={`/product/${product?.id}`}>

@@ -4,11 +4,10 @@ import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Profile from "./components/Profile";
 import CartPage from "./pages/CartPage";
-import Products from "./pages/Products";
 import { CartProvider } from "../src/pages/CartContext";
 import { ProductProvider } from "../src/pages/ProductContext";
 import CartItems from "./pages/CartItems";
-
+import Product from "./pages/Product"
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -25,8 +24,8 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/products" element={<Products />} />
             <Route path="/cartpage" element={<CartPage />} />
+            <Route path="/product/:id" element={<Product />}  />
             <Route path="/cartitems" element={<CartItems />} />
           </Routes>
         </BrowserRouter>

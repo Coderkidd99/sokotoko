@@ -1,7 +1,6 @@
 import {  useEffect, useContext } from "react";
 import ProductCard from "./ProductCard";
 import ProductContext from "./ProductContext";
-import { productData } from "../ProductData";
 
 const Products = () => {
   const { products, setProducts, favorites, setFavorites } = useContext(ProductContext);
@@ -16,24 +15,14 @@ const Products = () => {
     }
   };
 
-/*    useEffect(() => {
+   useEffect(() => {
     fetch("https://fakestoreapi.com/products/")
       .then((response) => response.json())
       .then((apiData) => setProducts(apiData))
       .catch((error) => console.log(error));
   }, [setProducts]); 
-  */
 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setTimeout(() => {
-        setProducts(productData);
-      }, 1000);
-    };
-
-    fetchData();
-  }, [setProducts]); 
 
   return (
     <div>

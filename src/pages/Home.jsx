@@ -1,8 +1,9 @@
-import { useContext } from "react";
-import ProductContext from "./ProductContext";
+
+
+import Products from "./Products";
 
 const Home = () => {
-  const { products } = useContext(ProductContext);
+
   
   return (
     <div>
@@ -13,19 +14,8 @@ const Home = () => {
             Shop our popular categories
           </h1>
         </div>
-        
+        <Products />
 
-        <div className="flex items-center justify-start ml-20 gap-11 flex-wrap">
-          {products.map((item) => (
-            <div key={item.id} className="relative rounded-full overflow-hidden w-48 h-48">
-              <img
-                className="w-full h-full object-cover transition-transform duration-300 ease-in-out hover:scale-110"
-                src={item.image}
-                alt={item.title}
-              />
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );
