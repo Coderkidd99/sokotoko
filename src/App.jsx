@@ -3,7 +3,6 @@ import { useState } from "react";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Profile from "./components/Profile";
-import Seller from "./pages/Seller";
 import CartPage from "./pages/CartPage";
 import Products from "./pages/Products";
 import { CartProvider } from "../src/pages/CartContext";
@@ -26,7 +25,6 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/seller" element={<Seller />} />
             <Route path="/products" element={<Products />} />
             <Route path="/cartpage" element={<CartPage />} />
             <Route path="/cartitems" element={<CartItems />} />

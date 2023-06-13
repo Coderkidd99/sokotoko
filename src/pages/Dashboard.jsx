@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
 import { MdFavoriteBorder } from "react-icons/md";
 import { BsCart4 } from "react-icons/bs";
-import { FaUserCircle } from "react-icons/fa";
-import { BiStore } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import Logo from "../images/logo.png";
 import "../App";

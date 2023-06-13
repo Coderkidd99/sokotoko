@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import CategoryNavbar from "./CategoryNavbar";
 import ProductContext from "./ProductContext";
 
 const Home = () => {
@@ -7,7 +6,7 @@ const Home = () => {
   
   return (
     <div>
-      <CategoryNavbar /> 
+  
       <div className="px-24">
         <div className="flex ">
           <h1 className=" text-zinc-900  p-4 text-3xl font-bold ml-20 mt-11 mb-8 ">

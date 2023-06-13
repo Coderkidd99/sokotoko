@@ -16,13 +16,13 @@ const Products = () => {
     }
   };
 
-/*   useEffect(() => {
+/*    useEffect(() => {
     fetch("https://fakestoreapi.com/products/")
       .then((response) => response.json())
-      .then((apiData) => setItemsListing(apiData))
+      .then((apiData) => setProducts(apiData))
       .catch((error) => console.log(error));
-  }, [setItemsListing]); */
-
+  }, [setProducts]); 
+  */
 
 
   useEffect(() => {
@@ -33,11 +33,11 @@ const Products = () => {
     };
 
     fetchData();
-  }, [setProducts]);
+  }, [setProducts]); 
 
   return (
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-5">
         {products.map((item) => (
           <ProductCard
             key={item.id}
