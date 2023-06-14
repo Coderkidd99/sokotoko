@@ -1,9 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useContext } from "react";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
-import { FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import CartContext from "./CartContext";
 import ProductContext from "./ProductContext";
 
 function ProductCard({
