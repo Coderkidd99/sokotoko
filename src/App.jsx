@@ -8,6 +8,7 @@ import { CartProvider } from "../src/pages/CartContext";
 import { ProductProvider } from "../src/pages/ProductContext";
 import CartItems from "./pages/CartItems";
 import Product from "./pages/Product"
+import Favorites from "./pages/Favorites";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -27,6 +28,7 @@ export default function App() {
             <Route path="/cartpage" element={<CartPage />} />
             <Route path="/product/:id" element={<Product />}  />
             <Route path="/cartitems" element={<CartItems />} />
+            <Route path="/favorites" element={<Favorites />} />
           </Routes>
         </BrowserRouter>
       </CartProvider>
