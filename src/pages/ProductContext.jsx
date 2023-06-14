@@ -13,7 +13,6 @@ export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [showHeart, setShowHeart] = useState(false);
   const [favorites, setFavorites] = useState([]);
-
   return (
     <ProductContext.Provider value={{ products, setProducts, showHeart, setShowHeart, favorites, setFavorites}}>
       {children}

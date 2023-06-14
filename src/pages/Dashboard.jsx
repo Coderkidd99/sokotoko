@@ -10,12 +10,12 @@ import CartItems from "./CartItems";
 import LoginButton from "../components/LoginButton";
 import LogoutButton from "../components/LogoutButton";
 import Profile from "../components/Profile";
+import Favorites from "./Favorites";
 
 function Dashboard() {
   const { cartItems } = useContext(CartContext);
   const [showCart, setShowCart] = useState(false);
 
-  
   function toggleCart() {
     setShowCart(!showCart);
   }
@@ -47,34 +47,33 @@ function Dashboard() {
         </form>
         <nav className="flex p-2 justify-evenly items-center">
           <ul className="flex items-center list-none space-x-4">
-              <>
+            <>
+              <Link to="/favorites"> 
                 <li className="cursor-pointer hover:text-gray-600">
                   <MdFavoriteBorder size={24} />
                 </li>
+              </Link> 
+              <button
+                className="relative cursor-pointer hover:text-gray-600"
+                onClick={toggleCart}
+              >
+                <BsCart4 size={24} />
+                <span className="absolute top-0 right-0 -mt-1 -mr-1 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex justify-center items-center">
+                  {cartItems.length}
+                </span>
+              </button>
+              {showCart && (
+                <div>
+                  <CartItems showCart={showCart} toggleCart={toggleCart} />
+                </div>
+              )}
 
-                <button
-                  className="relative cursor-pointer hover:text-gray-600"
-                  onClick={toggleCart}
-                >
-                  <BsCart4 size={24} />
-                  <span className="absolute top-0 right-0 -mt-1 -mr-1 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex justify-center items-center">
-                    {cartItems.length}
-                  </span>
-                </button>
-                {showCart && (
-                  <div>
-                    <CartItems showCart={showCart} toggleCart={toggleCart} />
-                  </div>
-                )}
-
-                <li className="cursor-pointer hover:text-gray-600">
-                  < LoginButton />
-                  <LogoutButton />
-                </li>
-                <Profile />
-
-              </>
-            
+              <li className="cursor-pointer hover:text-gray-600">
+                <LoginButton />
+                <LogoutButton />
+              </li>
+              <Profile />
+            </>
           </ul>
         </nav>
       </div>
@@ -83,3 +82,4 @@ function Dashboard() {
 }
 
 export default Dashboard;
+

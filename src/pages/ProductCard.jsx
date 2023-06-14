@@ -6,13 +6,18 @@ import ProductContext from "./ProductContext";
 
 function ProductCard({
   product,
-  isFavorite = false,
   toggleFavorite = () => {},
 }) {
-  const { showHeart } = useContext(ProductContext);
+  const { showHeart, favorites } = useContext(ProductContext);
 
   const imageStyle = "object-contain	 cursor-pointer w-[200px] h-[200px] ";
   const price = product?.price || "";
+
+  const isFavorite = favorites.includes(product.id);
+
+  const handleToggleFavorite = () => {
+    toggleFavorite(product.id);
+  };
 
   return (
     <div className="overflow-hidden relative">
@@ -43,7 +48,7 @@ function ProductCard({
             <button
               type="button"
               className={`text-gray-500 ${isFavorite ? "text-red-500" : ""}`}
-              onClick={toggleFavorite}
+              onClick={handleToggleFavorite}
             >
               {isFavorite ? (
                 <MdFavorite size={24} />
