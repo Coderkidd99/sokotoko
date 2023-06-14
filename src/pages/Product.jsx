@@ -11,12 +11,10 @@ const Products = () => {
     return products.find((product) => product.id === parseInt(productId));
   };
   const { increaseCartQuantity } = useContext(CartContext);
-  const { showHeart } = useContext(ProductContext);
 
   const handleAddToCart = (productId, title, price) => {
     increaseCartQuantity(productId, title, price);
   };
-
 
   const renderProductDetails = (product) => {
     return (
@@ -34,7 +32,9 @@ const Products = () => {
           <h4 className="text-lg font-bold mb-4">${product.price}</h4>
           <button
             className="px-6 py-2 bg-orange-800 text-white rounded-full"
-            onClick={() => handleAddToCart(product.id, product.title, product.price)}
+            onClick={() =>
+              handleAddToCart(product.id, product.title, product.price)
+            }
           >
             Add to Cart
           </button>
