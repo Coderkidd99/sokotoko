@@ -11,16 +11,11 @@ function ProductCard({
   isFavorite = false,
   toggleFavorite = () => {},
 }) {
-  const { increaseCartQuantity } = useContext(CartContext);
   const { showHeart } = useContext(ProductContext);
 
-  const handleAddToCart = () => {
-    increaseCartQuantity(product.id, product.title, product.price);
-};
-
-  const imageStyle =  "object-contain	 cursor-pointer w-[200px] h-[200px] ";
+  const imageStyle = "object-contain	 cursor-pointer w-[200px] h-[200px] ";
   const price = product?.price || "";
- 
+
   return (
     <div className="overflow-hidden relative">
       {showHeart && (
@@ -33,7 +28,11 @@ function ProductCard({
 "
       >
         <Link to={`/product/${product?.id}`}>
-        <img src={product?.image} alt={product?.title} className={imageStyle} />
+          <img
+            src={product?.image}
+            alt={product?.title}
+            className={imageStyle}
+          />
         </Link>
       </div>
       <div className="p-4 bg-white">
@@ -53,14 +52,6 @@ function ProductCard({
               ) : (
                 <MdFavoriteBorder size={24} />
               )}
-            </button>
-
-            <button
-              type="button"
-              className="ml-4 bg-gray-900 text-white py-2 px-4 rounded-full flex items-center"
-              onClick={handleAddToCart}
-            >
-              <FiPlus size={24} />
             </button>
           </div>
         </div>
