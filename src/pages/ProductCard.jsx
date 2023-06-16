@@ -4,21 +4,26 @@ import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { Link } from "react-router-dom";
 import ProductContext from "./ProductContext";
 
-function ProductCard({
-  product,
-  toggleFavorite = () => {},
-}) {
+function ProductCard({ product}) {
   const { showHeart, favorites, setFavorites } = useContext(ProductContext);
 
   const imageStyle = "object-contain	 cursor-pointer w-[200px] h-[200px] ";
   const price = product?.price || "";
-
-  const isFavorite = favorites.includes(product.id);
+  
+  const isFavorite = favorites.some((favorite) => favorite.id === product.id);
 
   const handleToggleFavorite = () => {
-    toggleFavorite(product.id);
-    setFavorites([...favorites, product.id]);
+    if (isFavorite) {
+      const updatedFavorites = favorites.filter((favorite) => favorite.id !== product.id);
+      setFavorites(updatedFavorites);
+    } else {
+      setFavorites([...favorites, product]);
+    }
   };
+  
+  
+
+  
 
   return (
     <div className="overflow-hidden relative">
