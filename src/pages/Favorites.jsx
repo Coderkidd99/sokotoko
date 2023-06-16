@@ -1,4 +1,11 @@
+import { useContext } from "react";
+import ProductContext from "./ProductContext";
+
+
 const Favorites = () => {
+
+  const { showHeart, favorites } = useContext(ProductContext);
+  
   return (
     <div>
       <div>

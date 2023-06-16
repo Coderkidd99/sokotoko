@@ -8,7 +8,7 @@ function ProductCard({
   product,
   toggleFavorite = () => {},
 }) {
-  const { showHeart, favorites } = useContext(ProductContext);
+  const { showHeart, favorites, setFavorites } = useContext(ProductContext);
 
   const imageStyle = "object-contain	 cursor-pointer w-[200px] h-[200px] ";
   const price = product?.price || "";
@@ -17,6 +17,7 @@ function ProductCard({
 
   const handleToggleFavorite = () => {
     toggleFavorite(product.id);
+    setFavorites([...favorites, product.id]);
   };
 
   return (
