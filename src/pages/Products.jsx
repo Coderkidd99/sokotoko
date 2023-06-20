@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard";
 import ProductContext from "./ProductContext";
 
 const Products = () => {
-  const { products, setProducts, favorites, setFavorites, search } =
+  const { products, setProducts, favorites, setFavorites, search, setSearch } =
     useContext(ProductContext);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // Add loading state
@@ -15,6 +15,7 @@ const Products = () => {
       setFavorites([...favorites, productId]);
     }
   };
+
 
   useEffect(() => {
     setIsLoading(true); // Set loading state to true before fetching data
@@ -39,8 +40,8 @@ const Products = () => {
         product.description.toLowerCase().includes(search.toLowerCase())
     );
     setFilteredProducts(filtered);
-    
   }, [products, search]);
+
 
   return (
     <div>

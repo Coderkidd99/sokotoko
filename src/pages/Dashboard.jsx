@@ -10,7 +10,6 @@ import CartItems from "./CartItems";
 import LoginButton from "../components/LoginButton";
 import LogoutButton from "../components/LogoutButton";
 import Profile from "../components/Profile";
-import Favorites from "./Favorites";
 import ProductContext from "./ProductContext";
 
 function Dashboard() {
@@ -29,8 +28,20 @@ function Dashboard() {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    setProducts(search);
-    setSearch("");
+
+    // Filter products based on the search query
+    const filtered = products.filter(
+      (product) =>
+        product.title.toLowerCase().includes(search.toLowerCase()) ||
+        product.description.toLowerCase().includes(search.toLowerCase())
+    );
+
+    setProducts(filtered);
+    resetSearch();
+  };
+
+  const resetSearch = () => {
+    setSearch(""); // Reset the search query to empty string
   };
 
   return (
@@ -52,7 +63,6 @@ function Dashboard() {
             className="w-full h-full border border-gray-400 px-4 rounded-l-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
             value={search}
             onChange={handleInputChange}
-            
           />
           <button
             type="submit"
@@ -64,11 +74,11 @@ function Dashboard() {
         <nav className="flex p-2 justify-evenly items-center">
           <ul className="flex items-center list-none space-x-4">
             <>
-              <Link to="/favorites"> 
+              <Link to="/favorites">
                 <li className="cursor-pointer hover:text-gray-600">
                   <MdFavoriteBorder size={24} />
                 </li>
-              </Link> 
+              </Link>
               <button
                 className="relative cursor-pointer hover:text-gray-600"
                 onClick={toggleCart}
@@ -98,4 +108,3 @@ function Dashboard() {
 }
 
 export default Dashboard;
-
