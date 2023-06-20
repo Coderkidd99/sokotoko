@@ -40,6 +40,7 @@ const Products = () => {
         product.description.toLowerCase().includes(search.toLowerCase())
     );
     setFilteredProducts(filtered);
+    setSearch("");
   }, [products, search]);
 
 
