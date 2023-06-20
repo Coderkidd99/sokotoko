@@ -11,14 +11,27 @@ import LoginButton from "../components/LoginButton";
 import LogoutButton from "../components/LogoutButton";
 import Profile from "../components/Profile";
 import Favorites from "./Favorites";
+import ProductContext from "./ProductContext";
 
 function Dashboard() {
   const { cartItems } = useContext(CartContext);
   const [showCart, setShowCart] = useState(false);
+  const [search, setSearch] = useState("");
+  const { products, setProducts } = useContext(ProductContext);
 
   function toggleCart() {
     setShowCart(!showCart);
   }
+
+  const handleInputChange = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    setProducts(search);
+    setSearch("");
+  };
 
   return (
     <header className="flex flex-col sm:flex-row bg-white shadow px-28">
@@ -32,11 +45,14 @@ function Dashboard() {
             />
           </Link>
         </div>
-        <form className="flex flex-1 h-10 ml-4">
+        <form className="flex flex-1 h-10 ml-4" onSubmit={handleFormSubmit}>
           <input
             type="text"
             placeholder="Search for products"
             className="w-full h-full border border-gray-400 px-4 rounded-l-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+            value={search}
+            onChange={handleInputChange}
+            
           />
           <button
             type="submit"
